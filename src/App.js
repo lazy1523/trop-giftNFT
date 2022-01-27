@@ -1,84 +1,80 @@
-import './App.css';
-import { useState } from 'react';
-import { ethers } from 'ethers'
-import Greeter from './artifacts/contracts/Greeter.sol/Greeter.json'
-import Token from './artifacts/contracts/Token.sol/Token.json'
+import "./App.css";
+import { useState } from "react";
+import { ethers, BigNumber } from "ethers";
+import ShowSVG from './ShowSVG';
+import Words from "./artifacts/contracts/Words.sol/Words.json";
+import img from "./img.png";
 
-const greeterAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3"
-const tokenAddress = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"
+const wordAddress = "0x22160237b20f80cb6ab26a37c5bca25ff45a3685";
 
 function App() {
-  const [greeting, setGreetingValue] = useState()
-  const [userAccount, setUserAccount] = useState()
-  const [amount, setAmount] = useState()
-
+  const [size, setSize] = useState(0);
   async function requestAccount() {
-    await window.ethereum.request({ method: 'eth_requestAccounts' });
+    await window.ethereum.request({ method: "eth_requestAccounts" });
   }
 
-  async function fetchGreeting() {
-    if (typeof window.ethereum !== 'undefined') {
-      const provider = new ethers.providers.Web3Provider(window.ethereum)
-      console.log({ provider })
-      const contract = new ethers.Contract(greeterAddress, Greeter.abi, provider)
-      try {
-        const data = await contract.greet()
-        console.log('data: ', data)
-      } catch (err) {
-        console.log("Error: ", err)
-      }
-    }    
+  function m(num, decimals) {
+    return BigNumber.from(num).mul(BigNumber.from(10).pow(decimals));
   }
 
-  async function getBalance() {
-    if (typeof window.ethereum !== 'undefined') {
-      const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
+  async function mint() {
+    if (typeof window.ethereum !== "undefined") {
+      await requestAccount();
       const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const contract = new ethers.Contract(tokenAddress, Token.abi, provider)
-      const balance = await contract.balanceOf(account);
-      console.log("Balance: ", balance.toString());
-    }
-  }
-
-  async function setGreeting() {
-    if (!greeting) return
-    if (typeof window.ethereum !== 'undefined') {
-      await requestAccount()
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      console.log({ provider })
-      const signer = provider.getSigner()
-      const contract = new ethers.Contract(greeterAddress, Greeter.abi, signer)
-      const transaction = await contract.setGreeting(greeting)
-      await transaction.wait()
-      fetchGreeting()
-    }
-  }
-
-  async function sendCoins() {
-    if (typeof window.ethereum !== 'undefined') {
-      await requestAccount()
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      console.log({ provider });
       const signer = provider.getSigner();
-      const contract = new ethers.Contract(tokenAddress, Token.abi, signer);
-      const transaction = await contract.transfer(userAccount, amount);
+      const contract = new ethers.Contract(wordAddress, Words.abi, signer);
+      const transaction = await contract.mint(
+        "&#10022;",
+        "rgb(39,112,38)",
+        "&#128757;",
+        "为自己的投资留一辆电动车",
+        "外卖币哥",
+        "Words is opensource and free.",
+        { value: m(size, 18) }
+      );
       await transaction.wait();
-      console.log(`${amount} Coins successfully sent to ${userAccount}`);
     }
   }
 
   return (
     <div className="App">
-      <header className="App-header">
-        <button onClick={fetchGreeting}>Fetch Greeting</button>
-        <button onClick={setGreeting}>Set Greeting</button>
-        <input onChange={e => setGreetingValue(e.target.value)} placeholder="Set greeting" />
-
-        <br />
-        <button onClick={getBalance}>Get Balance</button>
-        <button onClick={sendCoins}>Send Coins</button>
-        <input onChange={e => setUserAccount(e.target.value)} placeholder="Account ID" />
-        <input onChange={e => setAmount(e.target.value)} placeholder="Amount" />
-      </header>
+      <div className="App-header"></div>
+      <div className="App-content1">
+        <div className="content1-wrap">
+          <div>
+            <div className="content1-title">Gift NFT FOR YOU</div>
+            <div className="content1-text">
+              This is an NFT gift from TropIC for you
+            </div>
+          </div>
+          <div>
+            <div className="content1-img">
+              <img src={img} alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="App-content2">
+        <div className="content2-warp">
+          <div className="content2-logo-select">
+            
+            <div style={{marginBottom:"20px"}}>LOGO Select</div>
+            <div>图标logo</div>
+          </div>
+          <div className="content2-logo-view">
+            <div style={{marginBottom:"20px"}}>NFT Preview </div>
+            
+            <div>
+             <ShowSVG />
+            </div>
+          </div>
+          <div className="span-col-2">
+            <div className="span-col-2-button" onClick={()=>setSize(size+1)}>Double Size * {size}</div>
+            <div className="span-col-2-button" onClick={ async()=>await mint()}>Mint</div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
