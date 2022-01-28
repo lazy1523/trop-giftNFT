@@ -8,8 +8,11 @@ body {
   color: #fff;
 }
 .App-header {
-  height: 48px;
-  margin-bottom: 50px;
+  height: 52px;
+  margin-bottom: 52px;
+  text-align: center;
+  display: flex;
+  justify-content: flex-end;
 }
 .App-content1 {
   height: 600px;
@@ -53,6 +56,20 @@ body {
   display: flex;
   justify-content: center;
   margin-top:20px
+}
+.connect-button{
+  user-select:none;
+  width: 187px;
+  height: 52px;
+  line-height:52px;
+  background: #FFCC00;
+  border-radius: 30px;
+  color:#000000;
+  font-size:16px;
+  weight:500;
+  margin:10px;
+  cursor: pointer;
+
 }
 .span-col-2-button{
   user-select:none;
