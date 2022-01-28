@@ -6,7 +6,7 @@ import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import ShowSVG from "./ShowSVG";
 import Words from "./artifacts/contracts/Words.sol/Words.json";
-import img from "./img.png";
+import img from "./nft.svg";
 import { Picker } from "emoji-mart";
 
 const wordAddress = "0x22160237b20f80cb6ab26a37c5bca25ff45a3685";
