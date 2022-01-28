@@ -150,8 +150,9 @@ function App() {
               Double Size * {size}
             </div>
             <div
-              className="span-col-2-button"
-              onClick={async () => await mint()}
+              className= {defaultAccount?"span-col-2-button":"span-col-2-button-disable"}
+             
+              onClick={defaultAccount?async () => await mint():null}
             >
               Mint
             </div>

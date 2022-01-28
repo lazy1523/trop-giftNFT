@@ -1,7 +1,9 @@
 function ShowSVG({ author, emoji, text, size }) {
   function renderXY() {
-    if(size!=0){
+    if(size!=0&&size<=50){
       return `translate(${180-size} 320)`;
+    }if(size>50){
+      return `translate(130 320)`;
     }
     return "translate(180 320)";
   };

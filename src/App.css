@@ -85,6 +85,19 @@ body {
   cursor: pointer;
 
 }
+.span-col-2-button-disable{
+  user-select:none;
+  width: 187px;
+  height: 52px;
+  line-height:52px;
+  background: #FFCC00;
+  border-radius: 30px;
+  color:#000000;
+  font-size:16px;
+  weight:500;
+  margin:30px 20px 30px 20px;
+  cursor: not-allowed;
+}
 .content2-logo-select{
   height:600px;
   font-size:28px;
