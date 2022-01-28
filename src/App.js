@@ -106,7 +106,7 @@ function App() {
       <div className="App-content1">
         <div className="content1-wrap">
           <div>
-            <div className="content1-title">Words</div>
+            <div className="content1-title">Words Only 10000</div>
             <div className="content1-text">
               Words One NFT.
               <br/>
