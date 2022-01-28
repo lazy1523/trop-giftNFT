@@ -16,7 +16,7 @@ function App() {
   const [color, setColor] = useState("rgb(39,112,38)");
   const [author, setAuthor] = useState("cryptoer");
   const [text, setText] = useState("this gift for you");
-  const [emoji, setEmoji] = useState("🎉");
+  const [emoji, setEmoji] = useState("🛵");
 
   const [errorMessage, setErrorMessage] = useState(null);
   const [defaultAccount, setDefaultAccount] = useState(null);
