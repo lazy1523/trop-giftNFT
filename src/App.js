@@ -108,7 +108,12 @@ function App() {
           <div>
             <div className="content1-title">Words</div>
             <div className="content1-text">
-              Words One NFT, one story Mint your story, let the world remember
+              Words One NFT.
+              <br/>
+              One story Mint your story. 
+              <br/>
+              Let the world remember.
+              <br/>
               Co-authoring our "Tales from the thousand and one nights"
             </div>
           </div>
