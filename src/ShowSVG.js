@@ -1,4 +1,7 @@
 function ShowSVG({ author, emoji, text, size }) {
+  function jiage(){
+    //todo
+  }
   function renderXY() {
     if(size!=0&&size<=50){
       return `translate(${180-size} 320)`;

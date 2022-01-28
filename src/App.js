@@ -13,6 +13,7 @@ const wordAddress = "0x22160237b20f80cb6ab26a37c5bca25ff45a3685";
 
 function App() {
   const [size, setSize] = useState(0);
+  const [color, setColor] = useState("rgb(39,112,38)");
   const [author, setAuthor] = useState("cryptoer");
   const [text, setText] = useState("this gift for you");
   const [emoji, setEmoji] = useState("🎉");
@@ -77,7 +78,7 @@ function App() {
 
       const transaction = await contract.mint(
         "&#10022;",
-        "rgb(39,112,38)",
+        color,
         utf16toEntities(emoji),
         text,
         author,
@@ -85,6 +86,7 @@ function App() {
         { value: m(size, 18) }
       );
       await transaction.wait();
+      window.alert("Mint Success, please go to Opensea to view your NFT")
     }
   }
 
