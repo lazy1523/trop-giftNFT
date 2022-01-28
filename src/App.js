@@ -91,13 +91,15 @@ function App() {
   return (
     <div className="App">
       <div className="App-header">
+      
         {defaultAccount ? (
           <div style={{ margin: "30px" }}>{defaultAccount}</div>
         ) : (
           <div className="connect-button" onClick={connectWalletHandler}>
-            {connButtonText}
+            {connButtonText} 
           </div>
         )}
+        <div style={{ margin: "30px" }}>Please Switch Polygon(Matic) Network</div>
       </div>
       <div className="App-content1">
         <div className="content1-wrap">
