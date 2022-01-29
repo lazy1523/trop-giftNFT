@@ -14,8 +14,9 @@ const wordAddress = "0x22160237b20f80cb6ab26a37c5bca25ff45a3685";
 function App() {
   const [size, setSize] = useState(0);
   const [color, setColor] = useState("rgb(39,112,38)");
-  const [author, setAuthor] = useState("cryptoer");
-  const [text, setText] = useState("this gift for you");
+  const [author, setAuthor] = useState("Crypto");
+  const [desc, setDesc] = useState("This is the best gift on opensea");
+  const [text, setText] = useState("This gift for you");
   const [emoji, setEmoji] = useState("🛵");
 
   const [errorMessage, setErrorMessage] = useState(null);
@@ -82,7 +83,7 @@ function App() {
         utf16toEntities(emoji),
         text,
         author,
-        "Words is opensource and free.",
+        desc,
         { value: m(size, 18) }
       );
       await transaction.wait();
@@ -118,9 +119,9 @@ function App() {
             </div>
           </div>
           <div>
-            <div className="content1-img">
+            {/* <div className="content1-img">
               <img src={img} alt="" />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
@@ -129,26 +130,42 @@ function App() {
           <div className="content2-logo-select">
             <div style={{ marginBottom: "20px" }}>NFT Option</div>
             <div>
+            Text:
               <input
                 defaultValue={text}
                 onChange={(e) => setText(e.target.value)}
               ></input>
             </div>
             <div>
+            Author:
               <input
                 defaultValue={author}
                 onChange={(e) => setAuthor(e.target.value)}
               ></input>
             </div>
+            <div>
+            Desc:
+              <input
+                defaultValue={desc}
+                onChange={(e) => setDesc(e.target.value)}
+              ></input>
+            </div>
+            <div>
+            NFT bg color:
+              <input
+                defaultValue={color}
+                onChange={(e) => setColor(e.target.value)}
+              ></input>
+            </div>
             <div style={{ marginTop: "20px" }}>
-              <Picker onSelect={(emoji) => setEmoji(emoji.native)} />
+              <Picker style={{height:"450px"}} onSelect={(emoji) => setEmoji(emoji.native)} />
             </div>
           </div>
           <div className="content2-logo-view">
             <div style={{ marginBottom: "20px" }}>NFT Preview </div>
 
             <div>
-              <ShowSVG author={author} emoji={emoji} text={text} size={size} />
+              <ShowSVG color={color} author={author} emoji={emoji} text={text} size={size} />
             </div>
           </div>
           <div className="span-col-2">

@@ -1,4 +1,4 @@
-function ShowSVG({ author, emoji, text, size }) {
+function ShowSVG({ author, emoji, text, size,color }) {
 
   function renderXY() {
     if(size!=0&&size<=50){
@@ -17,7 +17,7 @@ function ShowSVG({ author, emoji, text, size }) {
   };
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="400" height="600">
-      <rect style={{ fill: "rgb(39,112,38)" }} width="400" height="600" />
+      <rect style={{ fill: color }} width="400" height="600" />
       <text transform={renderXY()} fontSize={renderSize()}>
         {/* &#128757; */}
         {emoji}
